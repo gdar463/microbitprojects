@@ -1,4 +1,4 @@
-from .microbit.__init__ import *
+import microbit
 import lib
 import pyautogui
 import keys
@@ -12,37 +12,54 @@ print("\nmicro:bit connected\n")
 threads = []
 pyautogui.FAILSAFE = True
 
+def right():
+    keys.HoldAndReleaseKey(0x20, 0.5)
+
+def left():
+    keys.HoldAndReleaseKey(0x1E, 0.5)
+
+def up():
+    keys.HoldAndReleaseKey(0x11, 0.5)
+
+def down():
+    keys.HoldAndReleaseKey(0x1F, 0.5)
+
+def lightC():
+    pyautogui.click()
+
+def rightC():
+    pyautogui.rightClick()
+
 def checkXAxis():
-    time.sleep(0.5)
-    x = microbit.accelerometer.get_x()
+    x = microbit.accelerometer.get_x()  # type: ignore
     print("\nx is " + str(x) + "\n")
 
     if x >= 350:
         print("right")
-        keys.HoldAndReleaseKey(0x20, 0.3)
+        threads.append(threading.Thread(target=right))
     elif x <= -350:
         print("left")
-        keys.HoldAndReleaseKey(0x1E, 0.3)
+        threads.append(threading.Thread(target=left))
 
 def checkYAxis():
-    time.sleep(0.5)
-    y = microbit.accelerometer.get_y()
+    y = microbit.accelerometer.get_y()  # type: ignore
+    print("y is " + str(y) + "\n")
+
     if y >= 350:
         print("down")
-        keys.HoldAndReleaseKey(0x1F, 0.3)
+        threads.append(threading.Thread(target=down))
     elif y <= -350:
         print("up")
-        keys.HoldAndReleaseKey(0x11, 0.3)
+        threads.append(threading.Thread(target=up))
 
 def checkButtons():
-    time.sleep(0.5)
-    if microbit.button_a.was_pressed():  
+    if microbit.button_a.was_pressed():    # type: ignore
         print("leftClick")
-        pyautogui.leftClick()
+        threads.append(threading.Thread(target=lightC))
         # pyautogui.press("l")
-    if microbit.button_b.was_pressed():  
+    if microbit.button_b.was_pressed():    # type: ignore
         print("rightClick")
-        pyautogui.rightClick()
+        threads.append(threading.Thread(target=rightC))
         # pyautogui.press("r")
 
 while True:
@@ -59,10 +76,23 @@ while True:
     #         threads.append(t)  # type: ignore
     #         t.start()   # type: ignore
 
-    # for t in threads:
-    #     t.join()
-
     checkXAxis()
     checkYAxis()
     checkButtons()
-    time.sleep(0.5)
+
+    print(threads)
+
+    for x in threads:
+        x.start()
+
+    print(threads)
+
+    for x in threads:
+        x.join()
+
+    print(threads)
+
+    for i in range(len(threads)):
+        threads.pop(0)
+
+    print(threads)
