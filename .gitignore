@@ -135,5 +135,6 @@ tracks.txt
 links.txt
 portscan.cache
 garbage.txt
+test.py
 src/
 docs/
