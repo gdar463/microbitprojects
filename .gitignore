@@ -134,3 +134,6 @@ links/
 tracks.txt
 links.txt
 portscan.cache
+garbage.txt
+src/
+docs/
