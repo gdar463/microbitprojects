@@ -1,0 +1,5 @@
+pyautogui
+pyperclip
+pywinauto
+psutil
+pywin32
