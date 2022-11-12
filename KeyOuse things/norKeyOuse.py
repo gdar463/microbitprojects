@@ -39,7 +39,6 @@ lib.initCountdown(5)
 #############################################################
 
 # Keys Function
-
 def lightC():
     pyautogui.click()
 
