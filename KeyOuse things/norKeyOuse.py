@@ -5,7 +5,7 @@
 
 #############################################################
 
-import microbit
+import bitio as microbit
 import lib
 import pyautogui
 import keys
