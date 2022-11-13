@@ -1,3 +1,8 @@
+# Credits to David Whale (whaleygeek)
+# Github: https://github.com/whaleygeek
+# Twitter: https://twitter.com/whaleygeek
+# Website: http://www.thinkingbinaries.com/
+
 # microbit/GPIO.py  08/06/2017  D.J.Whale
 #
 # A simple GPIO abstraction that works just like RPi.GPIO

@@ -133,14 +133,16 @@ pyautogui.FAILSAFE = True
 def HoldKey(hexKeyCode):
     extra = ctypes.c_ulong(0)
     ii_ = pynput._util.win32.INPUT_union()  # type: ignore
-    ii_.ki = pynput._util.win32.KEYBDINPUT(0, hexKeyCode, 0x0008, 0, ctypes.cast(ctypes.pointer(extra), ctypes.c_void_p))  # type: ignore
+    hexKey = int(hexKeyCode, 16)
+    ii_.ki = pynput._util.win32.KEYBDINPUT(0, hexKey, 0x0008, 0, ctypes.cast(ctypes.pointer(extra), ctypes.c_void_p))  # type: ignore
     x = pynput._util.win32.INPUT(ctypes.c_ulong(1), ii_)  # type: ignore
     SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
 def ReleaseKey(hexKeyCode):
     extra = ctypes.c_ulong(0)
     ii_ = pynput._util.win32.INPUT_union()  # type: ignore
-    ii_.ki = pynput._util.win32.KEYBDINPUT(0, hexKeyCode, 0x0008 | 0x0002, 0, ctypes.cast(ctypes.pointer(extra), ctypes.c_void_p))    # type: ignore
+    hexKey = int(hexKeyCode, 16)
+    ii_.ki = pynput._util.win32.KEYBDINPUT(0, hexKey, 0x0008 | 0x0002, 0, ctypes.cast(ctypes.pointer(extra), ctypes.c_void_p))    # type: ignore
     x = pynput._util.win32.INPUT(ctypes.c_ulong(1), ii_)  # type: ignore
     SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 

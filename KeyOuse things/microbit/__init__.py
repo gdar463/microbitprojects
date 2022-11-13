@@ -1,3 +1,8 @@
+# Credits to David Whale (whaleygeek)
+# Github: https://github.com/whaleygeek
+# Twitter: https://twitter.com/whaleygeek
+# Website: http://www.thinkingbinaries.com/
+
 # __init__.py
 
 import sys

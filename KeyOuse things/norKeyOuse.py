@@ -1,11 +1,13 @@
 # This is intended for normal use case so only mouse and 2 keys
 
 # Ignore all the # type: ignore
-# They are for VSCode Intellisense, so it doesn't say on each line that there's a error
+# They are for VSCode IntelliSense, so it doesn't say on each line that there's a error
+
+# (I love PyLance)
 
 #############################################################
 
-import bitio as microbit
+import microbit
 import lib
 import pyautogui
 import keys
@@ -26,15 +28,16 @@ bTouch = str(input("\nWhat key do you want to press when using B and the gold lo
 f = open("keysdict.txt","r")
 keysDictFile = f.read()
 keysDictLines = keysDictFile.splitlines()
-keysDictSingle = str(keysDictLines).replace("[","").replace("]","").replace(" ","").replace("(","").replace(")","").replace("'","").split(":")
+keysDictDouble = str(keysDictLines).replace("[","").replace("]","").replace(" ","").replace("(","").replace(")","").replace("'","").split(":")
+keysDictSingle = str(keysDictDouble).replace("[","").replace("]","").replace(" ","").replace("(","").replace(")","").replace("'","").split(",")
 for x in range(len(keysDictLines)):
-    keysDict.update({keysDictSingle[0]: int(keysDictSingle[1])})
-    keysDictSingle.pop(0)
+    keysDict.update({keysDictSingle[0]: keysDictSingle[1]})
     keysDictSingle.pop(1)
+    keysDictSingle.pop(0)
 f.close()
 
 # It's the Final Coutdown
-lib.initCountdown(5)
+lib.initCountdown(5)  # type: ignore
 
 #############################################################
 

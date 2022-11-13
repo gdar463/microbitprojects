@@ -1,3 +1,8 @@
+# Credits to David Whale (whaleygeek)
+# Github: https://github.com/whaleygeek
+# Twitter: https://twitter.com/whaleygeek
+# Website: http://www.thinkingbinaries.com/
+
 # api.py  01/06/2017  D.J.Whale
 #
 # an API to a remote micro:bit

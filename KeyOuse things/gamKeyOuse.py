@@ -1,11 +1,13 @@
 # This is intended for game use case so wasd, mouse and 2 buttons
 
 # Ignore all the # type: ignore
-# They are for VSCode Intellisense, so it doesn't say on each line that there's a error
+# They are for VSCode IntelliSense, so it doesn't say on each line that there's a error
+
+# (I love PyLance)
 
 #############################################################
 
-import bitio as microbit
+import microbit
 import lib
 import pyautogui
 import keys
@@ -18,6 +20,7 @@ print("\nmicro:bit connected\n")
 # Various Variables
 keysDict = {}
 threads = []
+keysDictSingle = []
 pyautogui.FAILSAFE = True
 aTouch = str(input("What key do you want to press when using A and the gold logo? (it'll be pressed only twenty milliseconds, so not held down) (for the key check keysdict.txt and type here the key in the first column you want)\n> "))
 bTouch = str(input("\nWhat key do you want to press when using B and the gold logo? (it'll be pressed only twenty milliseconds, so not held down) (for the key check keysdict.txt and type here the key in the first column you want)\n> "))
@@ -26,30 +29,31 @@ bTouch = str(input("\nWhat key do you want to press when using B and the gold lo
 f = open("keysdict.txt","r")
 keysDictFile = f.read()
 keysDictLines = keysDictFile.splitlines()
-keysDictSingle = str(keysDictLines).replace("[","").replace("]","").replace(" ","").replace("(","").replace(")","").replace("'","").split(":")
+keysDictDouble = str(keysDictLines).replace("[","").replace("]","").replace(" ","").replace("(","").replace(")","").replace("'","").split(":")
+keysDictSingle = str(keysDictDouble).replace("[","").replace("]","").replace(" ","").replace("(","").replace(")","").replace("'","").split(",")
 for x in range(len(keysDictLines)):
-    keysDict.update({keysDictSingle[0]: int(keysDictSingle[1])})
-    keysDictSingle.pop(0)
+    keysDict.update({keysDictSingle[0]: keysDictSingle[1]})
     keysDictSingle.pop(1)
+    keysDictSingle.pop(0)
 f.close()
 
 # It's the Final Coutdown
-lib.initCountdown(5)
+lib.initCountdown(5)  # type: ignore
 
 #############################################################
 
 # Keys Function
 def right():
-    keys.HoldAndReleaseKey(0x20, 0.2)
+    keys.HoldAndReleaseKey("32", 0.2)
 
 def left():
-    keys.HoldAndReleaseKey(0x1E, 0.2)
+    keys.HoldAndReleaseKey("30", 0.2)
 
 def up():
-    keys.HoldAndReleaseKey(0x11, 0.2)
+    keys.HoldAndReleaseKey("17", 0.2)
 
 def down():
-    keys.HoldAndReleaseKey(0x1F, 0.2)
+    keys.HoldAndReleaseKey("31", 0.2)
 
 def lightC():
     pyautogui.click()

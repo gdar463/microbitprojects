@@ -4,7 +4,7 @@ My Micro:Bit projects
 
 ## Installing
 
-Install git if you haven't already, then execute in a terminal:  
+Install [git](https://git-scm.com/downloads) if you haven't already, then execute in a terminal:  
 ```
 git clone https://github.com/gdar463/microbitprojects.git
 ```

@@ -1,3 +1,8 @@
+# Credits to David Whale (whaleygeek)
+# Github: https://github.com/whaleygeek
+# Twitter: https://twitter.com/whaleygeek
+# Website: http://www.thinkingbinaries.com/
+
 # font2x5.py  07/06/2017  D.J.Whale
 #
 # This font allows two digits to be squashed side by side on a micro:bit 5x5 display.
