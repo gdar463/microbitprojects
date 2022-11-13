@@ -9,7 +9,7 @@ Install [git](https://git-scm.com/downloads) if you haven't already, then execut
 git clone https://github.com/gdar463/microbitprojects.git
 ```
 Flash on the Micro:Bit the bitio.hex file.  
-If you haven't before, install python with pip, add to path python (with installer or manually).  
+If you haven't before, install [python](https://www.python.org/downloads/) with pip, add to path python (with installer or manually).  
 In a terminal execute:
 ```
 pip install -r requirments.txt
