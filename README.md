@@ -10,14 +10,7 @@ git clone https://github.com/gdar463/microbitprojects.git
 ```
 Flash on the Micro:Bit the bitio.hex file.  
 If you haven't before, install [python](https://www.python.org/downloads/) with pip, add to path python (with installer or manually).  
-In a terminal execute:
-```
-pip install -r requirments.txt
-```
-If it doesn't work use:  
-```
-py -m pip install -r requirments.txt
-```
+Execute the requirements.py  
 
 ## What's in this mess
 
