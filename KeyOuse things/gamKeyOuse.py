@@ -22,8 +22,10 @@ keysDict = {}
 threads = []
 keysDictSingle = []
 pyautogui.FAILSAFE = True
-aTouch = str(input("What key do you want to press when using A and the gold logo? (it'll be pressed only twenty milliseconds, so not held down) (for the key check keysdict.txt and type here the key in the first column you want)\n> "))
-bTouch = str(input("\nWhat key do you want to press when using B and the gold logo? (it'll be pressed only twenty milliseconds, so not held down) (for the key check keysdict.txt and type here the key in the first column you want)\n> "))
+version = int("".join(filter(str.isdigit, str(input("What version is your microbit? (1 or 2) (If 1 it removes the gold logo functionality)\n> "))))[:1])
+if version != 1:
+    aTouch = str(input("\nWhat key do you want to press when using A and the gold logo? (it'll be pressed only twenty milliseconds, so not held down) (for the key check keysdict.txt and type here the key in the first column you want)\n> "))
+    bTouch = str(input("\nWhat key do you want to press when using B and the gold logo? (it'll be pressed only twenty milliseconds, so not held down) (for the key check keysdict.txt and type here the key in the first column you want)\n> "))
 
 # How to reduce a 101-lines dictionary in a 9-lines mess
 f = open("keysdict.txt","r")
@@ -91,13 +93,13 @@ def checkXAxis():
     x = microbit.accelerometer.get_x()  # type: ignore
     if x >= 350:
         print("right")
-        if microbit.touch_logo_is_pressed():  # type: ignore
+        if not version == 1 and microbit.touch_logo_is_pressed():  # type: ignore
             pyautogui.move(x/120,0)
         else:
             threads.append(threading.Thread(target = right))
     elif x <= -350:
         print("left")
-        if microbit.touch_logo_is_pressed():  # type: ignore
+        if not version == 1 and microbit.touch_logo_is_pressed():  # type: ignore
             pyautogui.move(x/120,0)
         else:
             threads.append(threading.Thread(target = left))
@@ -106,13 +108,13 @@ def checkYAxis():
     y = microbit.accelerometer.get_y()  # type: ignore
     if y >= 350:
         print("down")
-        if microbit.touch_logo_is_pressed():  # type: ignore
+        if not version == 1 and microbit.touch_logo_is_pressed():  # type: ignore
             pyautogui.move(0,y/120)
         else:
             threads.append(threading.Thread(target = down))
     elif y <= -350:
         print("up")
-        if microbit.touch_logo_is_pressed():  # type: ignore
+        if not version == 1 and microbit.touch_logo_is_pressed():  # type: ignore
             pyautogui.move(0,y/120)
         else:
             threads.append(threading.Thread(target = up))

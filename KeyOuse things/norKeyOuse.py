@@ -21,8 +21,10 @@ print("\nmicro:bit connected\n")
 keysDict = {}
 threads = []
 pyautogui.FAILSAFE = True
-aTouch = str(input("What key do you want to press when using A and the gold logo? (it'll be pressed only twenty milliseconds, so not held down) (for the key check keysdict.txt and type here the key in the first column you want)\n> "))
-bTouch = str(input("\nWhat key do you want to press when using B and the gold logo? (it'll be pressed only twenty milliseconds, so not held down) (for the key check keysdict.txt and type here the key in the first column you want)\n> "))
+version = int("".join(filter(str.isdigit, str(input("What version is your microbit? (1 or 2) (If 1 it removes the gold logo functionality)\n> "))))[:1])
+if version != 1:
+    aTouch = str(input("\nWhat key do you want to press when using A and the gold logo? (it'll be pressed only twenty milliseconds, so not held down) (for the key check keysdict.txt and type here the key in the first column you want)\n> "))
+    bTouch = str(input("\nWhat key do you want to press when using B and the gold logo? (it'll be pressed only twenty milliseconds, so not held down) (for the key check keysdict.txt and type here the key in the first column you want)\n> "))
 
 # How to reduce a 101-lines dictionary in a 9-lines mess
 f = open("keysdict.txt","r")
@@ -95,7 +97,7 @@ def checkYAxis():
 def checkButtons():
     # Button A
     if microbit.button_a.was_pressed():    # type: ignore
-        if microbit.touch_logo_is_pressed():  # type: ignore
+        if not version == 1 and microbit.touch_logo_is_pressed():  # type: ignore
             print("aTouch")
             threads.append(threading.Thread(target = aTouchFn))
         else:
@@ -103,7 +105,7 @@ def checkButtons():
             threads.append(threading.Thread(target = lightC))
     # Button B
     if microbit.button_b.was_pressed():    # type: ignore
-        if microbit.touch_logo_is_pressed():  # type: ignore
+        if not version == 1 and microbit.touch_logo_is_pressed():  # type: ignore
             print("bTouch")
             threads.append(threading.Thread(target = bTouchFn))
         else:
