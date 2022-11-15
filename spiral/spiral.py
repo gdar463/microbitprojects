@@ -1,3 +1,5 @@
+# How to reduce 17 lines of code to 13 lines of code
+
 # Ignore all the # type: ignore
 # They are for VSCode IntelliSense, so it doesn't say on each line that there's a error
 
@@ -21,9 +23,6 @@ def led(x, y, s):
 
 #############################################################
 
-xf = 4
-yf = 0
-
 num = (4, 2)
 
 #############################################################
@@ -39,7 +38,7 @@ while True:
         else:
             n = 1
         for i in range(x):
-            led(abs(min(-i, 0)) + n, n, 100)
+            led(i + n, n, 100)
         for i in range(x):
             led(4 - n, i + abs(~n) - ~n - 2 - n, 100)
         for i in range(x):
